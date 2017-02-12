@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>Spring1</groupId>
-    <artifactId>lesson1</artifactId>
+    <artifactId>springStudy</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -40,6 +40,12 @@
 
 
     <dependencies>
+
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
         <!--Spring Security-->
         <dependency>
             <groupId>org.springframework.security</groupId>
