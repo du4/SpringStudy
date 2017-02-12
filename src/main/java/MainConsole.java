@@ -16,7 +16,6 @@ public class MainConsole {
         //Lesson2
         Person person = (Person) context.getBean("person");
         System.out.println(person);
-        LOG.info(person.toString());
 //        person.getAddress().getFlats().forEach(f -> System.out.println("Flat" + f));
 
 //        CollectionBean cb = (CollectionBean) context.getBean("collectionBean");
