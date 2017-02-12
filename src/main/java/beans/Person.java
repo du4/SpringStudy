@@ -1,23 +1,14 @@
 package beans;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-
-import javax.inject.Inject;
-import javax.inject.Provider;
+import javax.inject.*;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Person {
-    private static final Logger LOG = LoggerFactory.getLogger(Person.class);
-
     private Long id;
     private String name;
     private String surname;
     private String email;
-
 
     @Inject
     @AddressAnnotated
@@ -28,7 +19,7 @@ public class Person {
     }
 
     public Person(Provider<IAddress> addressProvider) {
-        addresses = new HashSet<>();
+        addresses = new HashSet<IAddress>();
         for (int i = 0 ; i < 5 ; i++){
             addresses.add(addressProvider.get());
         }
