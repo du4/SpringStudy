@@ -1,6 +1,6 @@
 package beans;
 
-public class AddressImpl implements IAddress {
+public class CompanyAddress implements IAddress {
     private Long id;
     private String street;
     private String city;
@@ -33,7 +33,7 @@ public class AddressImpl implements IAddress {
 
     @Override
     public String toString() {
-        return "AddressImpl{" +
+        return "CompanyAddress{" +
                 "id=" + id +
                 ", street='" + street + '\'' +
                 ", city='" + city + '\'' +
