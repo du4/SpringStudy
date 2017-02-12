@@ -12,7 +12,9 @@ public class Person {
     private String name;
     private String surname;
     private String email;
+
     private IAddress address;
+
     public Person() {
     }
 
@@ -21,6 +23,11 @@ public class Person {
         this.name = name;
         this.surname = surname;
         this.email = email;
+        this.address = address;
+    }
+
+    @Autowired
+    public Person(@AddressAnnotated IAddress address) {
         this.address = address;
     }
 
@@ -66,8 +73,6 @@ public class Person {
         return address;
     }
 
-    @Autowired(required = false)
-    @Qualifier("address")
     public void setAddress(IAddress address) {
         this.address = address;
     }

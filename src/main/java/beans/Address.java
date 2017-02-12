@@ -2,15 +2,16 @@ package beans;
 
 import java.util.List;
 
+@AddressAnnotated
 public class Address implements IAddress{
 
-    Long id;
+    private Long id;
 
-    Integer home;
+    private Integer home;
 
-    String street;
+    private String street;
 
-    List<Integer>flats;
+    private List<Integer>flats;
 
     public Address() {
     }

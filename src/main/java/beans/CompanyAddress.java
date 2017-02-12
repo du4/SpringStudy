@@ -1,5 +1,7 @@
 package beans;
 
+
+@CompanyAddr
 public class CompanyAddress implements IAddress {
     private Long id;
     private String street;
