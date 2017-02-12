@@ -1,35 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
-       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
        http://www.springframework.org/schema/aop
-       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
-       default-init-method="init" default-destroy-method="destroy"
-       default-autowire="byName"
-       >
+       http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+
+
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd"
+       default-init-method="init" default-destroy-method="destroy">
+    <context:annotation-config/>
 
     <bean id="calculator" class="beans.Calculator" autowire="byName"></bean>
     <bean id="notifier" class="beans.Notifier"/>
 
 
-    <bean id="person" class="beans.Person" scope="singleton" destroy-method="destroy" autowire="constructor">
+    <bean id="person" class="beans.Person" scope="singleton" destroy-method="destroy" >
         <property name="id" value="1" />
         <property name="name" value="DUCH"/>
         <property name="surname" value="Govnokoder"/>
         <property name="email" value="du4@mail.by"></property>
-        <!--<property name="address" ref="address"/>-->  <!-- Autowired byName-->
     </bean>
 
-    <bean id="addressImpl" class="beans.AddressImpl" autowire-candidate="true">
+    <bean id="addressImpl" class="beans.AddressImpl">
         <property name="id" value="3"/>
         <property name="city" value="Baranovichi"/>
         <property name="street" value="Lenina"/>
     </bean>
 
-    <bean id="address" class="beans.Address" autowire-candidate="false">
+    <bean id="address" class="beans.Address">
         <property name="id" value="1"></property>
         <property name="home" value="43"/>
         <property name="street" value="Kiseliova"/>
@@ -44,114 +46,6 @@
             </list>
         </property>
     </bean>
-
-    <bean id="collectionBean" class="beans.CollectionBean">
-        <property name="names">
-            <set>
-                <value>Aristarh Nikodimych</value>
-                <value>Gavriila Ardalionovich</value>
-            </set>
-        </property>
-
-        <property name="cars">
-            <set>
-                <value>Skoda</value>
-                <value>Moskvich</value>
-            </set>
-        </property>
-
-        <property name="cities">
-            <set>
-                <value>Bardoneccia</value>
-                <value>Mestia</value>
-                <value>Mestia</value>
-            </set>
-        </property>
-        <property name="persons">
-            <list>
-                <bean class="beans.Person">
-                    <property name="id" value="5"/>
-                    <property name="name" value="Pasha"/>
-                    <property name="surname" value="Adamovich"/>
-                </bean>
-                <bean class="beans.Person">
-                    <property name="id" value="6"/>
-                    <property name="name" value="Dima"/>
-                    <property name="surname" value="Budinavichus"/>
-                </bean>
-                <bean class="beans.Person">
-                    <property name="id" value="7"/>
-                    <property name="name" value="Olha"/>
-                    <property name="surname" value="Hodyko"/>
-                </bean>
-
-            </list>
-        </property>
-
-    </bean>
-
-    <bean id="mapBean" class="beans.MapBean">
-        <property name="params">
-            <map>
-                <entry key="12345" value-ref="address"/>
-            </map>
-        </property>
-    </bean>
-
-    <bean id="propertiesBean" class="beans.PropertiesBean">
-        <property name="properties">
-            <props>
-                <prop key="hSpeed">Connection speed</prop>
-                <prop key="timeOut">Connection timeout</prop>
-            </props>
-        </property>
-    </bean>
-
-    <bean id="constructorBean" class="beans.ConstructorBean">
-        <constructor-arg index="0" value="BlaBla"></constructor-arg>
-        <constructor-arg index="1" value="123"></constructor-arg>
-        <property name="addres">
-            <null></null>
-        </property>
-    </bean>
-
-    <bean id="calcBean1" class="beans.CalcBean">
-        <property name="multiplier" value="#{T(java.lang.Math).PI * 2}"></property>
-    </bean>
-
-    <bean id="calcBean" class="beans.CalcBean">
-        <property name="multiplier" value="#{T(java.lang.Math).PI * 2}"></property>
-        <property name="value" value="#{propertiesBean.toString()}"></property>
-        <property name="exp" value="#{not(calcBean1.multiplier > 5)}"></property>
-        <property name="elvis" value="#{address.street ?: 'Pulihova'}"></property>
-        <property name="regexp" value="#{person.email matches '[a-zA-Z0-9.%+-]+@[a-zA-Z0-9.-]+.by'}"></property>
-    </bean>
-
-    <util:list id="people">
-        <bean class="beans.Person" p:id="1" p:name="WERT" p:surname="TREW"/>
-        <bean class="beans.Person" p:id="2" p:name="FOS" p:surname="LOJ"/>
-        <bean class="beans.Person" p:id="3" p:name="TREW" p:surname="DTR"/>
-        <bean class="beans.Person" p:id="4" p:name="LKJ" p:surname="HUF"/>
-    </util:list>
-
-    <util:list id="addresses">
-        <bean class="beans.Address" p:id="1" p:home="32" p:street="ASDFG"/>
-        <bean class="beans.Address" p:id="2" p:home="62" p:street="EWQX"/>
-    </util:list>
-
-    <bean id="personBean" class="beans.Person"
-          p:id="#{addresses[1].id-1}"
-          p:name="#{people[1].name + people[0].name}"
-          p:address="#{addresses[0]}"
-        >
-    </bean>
-
-    <bean id="personsSelector" class="beans.CollectionBean"
-        p:names="DUCH" p:persons="#{people.?[(id gt 1) and (id lt 4)]}"
-    >
-    </bean>
-
-
 
     <aop:config>
         <aop:aspect id="note" ref="notifier">

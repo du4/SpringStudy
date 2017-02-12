@@ -2,6 +2,7 @@ package beans;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class Person {
     private static final Logger LOG = LoggerFactory.getLogger(Person.class);
@@ -10,16 +11,11 @@ public class Person {
     private String name;
     private String surname;
     private String email;
-    private IAddress address;
-
+    private Address address;
     public Person() {
     }
 
-    public Person(IAddress address) {
-        this.address = address;
-    }
-
-    public Person(Long id, String name, String surname, String email, IAddress address ) {
+    public Person(Long id, String name, String surname, String email, Address address ) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -65,11 +61,12 @@ public class Person {
         this.email = email;
     }
 
-    public IAddress getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(IAddress address) {
+    @Autowired(required = false)
+    public void setAddress(Address address) {
         this.address = address;
     }
 
