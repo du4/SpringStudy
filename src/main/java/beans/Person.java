@@ -1,6 +1,6 @@
 package beans;
 
-import javax.inject.Inject;
+import org.springframework.beans.factory.annotation.Value;
 
 public class Person {
     private Long id;
@@ -8,9 +8,7 @@ public class Person {
     private String surname;
     private String email;
 
-    @Inject
-//    @CompanyAddr
-    @AddressAnnotated
+@Value("#{address}")
     private IAddress address;
 
     public Person() {
