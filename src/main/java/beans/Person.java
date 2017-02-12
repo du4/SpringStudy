@@ -1,7 +1,6 @@
 package beans;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 public class Person {
     private Long id;
@@ -10,7 +9,8 @@ public class Person {
     private String email;
 
     @Inject
-    @Named("companyAddress")
+//    @CompanyAddr
+    @AddressAnnotated
     private IAddress address;
 
     public Person() {
