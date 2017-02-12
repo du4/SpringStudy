@@ -1,5 +1,6 @@
 package beans;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 public class Person {
@@ -12,7 +13,7 @@ public class Person {
     @Value("du4@tut.by")
     private String email;
 
-    @Value("#{address}")
+    @Autowired(required = false)
     private IAddress address;
 
     public Person() {

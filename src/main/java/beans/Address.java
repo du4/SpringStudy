@@ -1,9 +1,10 @@
 package beans;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-@AddressAnnotated
-public class Address implements IAddress{
+@Component("address")
+public class Address implements beans.IAddress{
     @Value("2")
     private Long id;
     @Value("32")

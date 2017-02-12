@@ -1,7 +1,9 @@
 package beans;
 
 
-@CompanyAddr
+import org.springframework.stereotype.Component;
+
+
 public class CompanyAddress implements IAddress {
     private Long id;
     private String street;
