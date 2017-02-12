@@ -11,7 +11,11 @@
        http://www.springframework.org/schema/context/spring-context-4.0.xsd"
        default-init-method="init" default-destroy-method="destroy">
     <context:annotation-config/>
-    <context:component-scan base-package="beans"/>
+    <context:component-scan base-package="beans">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+        <context:exclude-filter type="assignable" expression="beans.CompanyAddress"/>
+    </context:component-scan>
+
 
     <bean id="calculator" class="beans.Calculator"/>
     <bean id="notifier" class="beans.Notifier"/>
