@@ -18,7 +18,7 @@
     <bean id="notifier" class="beans.Notifier"/>
 
 
-    <bean id="person" class="beans.Person" scope="prototype" destroy-method="destroy" >
+    <bean id="person" class="beans.Person" scope="prototype"  >
         <property name="id" value="1" />
         <property name="name" value="DUCH"/>
         <property name="surname" value="Govnokoder"/>

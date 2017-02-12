@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import javax.inject.Inject;
+import javax.inject.Provider;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Person {
     private static final Logger LOG = LoggerFactory.getLogger(Person.class);
@@ -15,29 +18,21 @@ public class Person {
     private String surname;
     private String email;
 
-    private IAddress address;
+
+    @Inject
+    @AddressAnnotated
+    @CompanyAddr
+    private Set <IAddress> addresses;
 
     public Person() {
     }
 
-    public Person(Long id, String name, String surname, String email, IAddress address ) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.address = address;
+    public Person(Provider<IAddress> addressProvider) {
+        addresses = new HashSet<>();
+        for (int i = 0 ; i < 5 ; i++){
+            addresses.add(addressProvider.get());
+        }
     }
-
-    @Inject
-    public Person(@CompanyAddr IAddress address) {
-        this.address = address;
-    }
-
-    public static Person getInstance() {
-        return null;
-    }
-
-
 
     public Long getId() {
         return id;
@@ -71,12 +66,12 @@ public class Person {
         this.email = email;
     }
 
-    public IAddress getAddress() {
-        return address;
+    public Set<IAddress> getAddresses() {
+        return addresses;
     }
 
-    public void setAddress(IAddress address) {
-        this.address = address;
+    public void setAddresses(Set<IAddress> addresses) {
+        this.addresses = addresses;
     }
 
     public void destroy() {
@@ -84,7 +79,7 @@ public class Person {
         this.name = null;
         this.surname = null;
         this.email = null;
-        this.address = null;
+        this.addresses = null;
     }
 
     @Override
@@ -94,7 +89,7 @@ public class Person {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
-                ", address=" + address +
+                ", address=" + addresses +
                 '}';
     }
 }
