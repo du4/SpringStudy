@@ -1,17 +1,16 @@
 package beans;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Value;
 
 @AddressAnnotated
 public class Address implements IAddress{
-
+    @Value("2")
     private Long id;
-
+    @Value("32")
     private Integer home;
-
+    @Value("Kiseliova")
     private String street;
 
-    private List<Integer>flats;
 
     public Address() {
     }
@@ -40,13 +39,6 @@ public class Address implements IAddress{
         this.street = street;
     }
 
-    public List<Integer> getFlats() {
-        return flats;
-    }
-
-    public void setFlats(List<Integer> flats) {
-        this.flats = flats;
-    }
 
     @Override
     public String toString() {

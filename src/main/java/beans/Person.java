@@ -3,12 +3,16 @@ package beans;
 import org.springframework.beans.factory.annotation.Value;
 
 public class Person {
+    @Value("1")
     private Long id;
+    @Value("du4")
     private String name;
+    @Value("duch")
     private String surname;
+    @Value("du4@tut.by")
     private String email;
 
-@Value("#{address}")
+    @Value("#{address}")
     private IAddress address;
 
     public Person() {

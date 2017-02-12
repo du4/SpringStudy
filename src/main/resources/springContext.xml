@@ -7,12 +7,11 @@
        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
-
-
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-4.0.xsd"
        default-init-method="init" default-destroy-method="destroy">
     <context:annotation-config/>
+    <context:component-scan base-package="beans"/>
 
     <bean id="calculator" class="beans.Calculator"/>
     <bean id="notifier" class="beans.Notifier"/>
@@ -35,16 +34,6 @@
         <property name="id" value="1"/>
         <property name="home" value="43"/>
         <property name="street" value="Kiseliova"/>
-        <property name="flats">
-            <list>
-                <value>1</value>
-                <value>2</value>
-                <value>3</value>
-                <value>4</value>
-                <value>5</value>
-                <value>6</value>
-            </list>
-        </property>
     </bean>
 
     <aop:config>
