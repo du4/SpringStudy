@@ -1,8 +1,7 @@
 package beans;
 
-import javax.inject.*;
-import java.util.HashSet;
-import java.util.Set;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 public class Person {
     private Long id;
@@ -11,18 +10,10 @@ public class Person {
     private String email;
 
     @Inject
-    @AddressAnnotated
-    @CompanyAddr
-    private Set <IAddress> addresses;
+    @Named("companyAddress")
+    private IAddress address;
 
     public Person() {
-    }
-
-    public Person(Provider<IAddress> addressProvider) {
-        addresses = new HashSet<IAddress>();
-        for (int i = 0 ; i < 5 ; i++){
-            addresses.add(addressProvider.get());
-        }
     }
 
     public Long getId() {
@@ -57,12 +48,12 @@ public class Person {
         this.email = email;
     }
 
-    public Set<IAddress> getAddresses() {
-        return addresses;
+    public IAddress getAddress() {
+        return address;
     }
 
-    public void setAddresses(Set<IAddress> addresses) {
-        this.addresses = addresses;
+    public void setAddress(IAddress address) {
+        this.address = address;
     }
 
     public void destroy() {
@@ -70,7 +61,7 @@ public class Person {
         this.name = null;
         this.surname = null;
         this.email = null;
-        this.addresses = null;
+        this.address = null;
     }
 
     @Override
@@ -80,7 +71,7 @@ public class Person {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
-                ", address=" + addresses +
+                ", address=" + address +
                 '}';
     }
 }

@@ -25,13 +25,13 @@
         <property name="email" value="du4@mail.by"/>
     </bean>
 
-    <bean  class="beans.CompanyAddress" scope="prototype">
+    <bean id="companyAddress"  class="beans.CompanyAddress" scope="prototype">
         <property name="id" value="3"/>
         <property name="city" value="Baranovichi"/>
         <property name="street" value="Lenina"/>
     </bean>
 
-    <bean  class="beans.Address" scope="prototype">
+    <bean id="address"  class="beans.Address" scope="prototype">
         <property name="id" value="1"/>
         <property name="home" value="43"/>
         <property name="street" value="Kiseliova"/>
