@@ -1,4 +1,4 @@
-import beans.*;
+import myAcpect.TaskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -10,13 +10,16 @@ public class MainConsole {
     public static void main(String[] args) {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("springContext.xml");
-        //Lesson1
-        Calculator calculator = context.getBean("calculator", Calculator.class);
-        System.out.println("FibonacciNumber(300)="+calculator.calculate(300));
-        //Lesson2
-        Person person = (Person) context.getBean("person");
-        System.out.println(person);
+        TaskService bean = (TaskService)context.getBean("taskService");
+        bean.performJob("Spring");
+        bean.performJob();
+        bean.preformJobAround();
 
+        try {
+            bean.performExceptionJob();
+        } catch (Exception e) {
+            LOG.error(""+e);
+        }
 
         ((ClassPathXmlApplicationContext) context).close();
     }
