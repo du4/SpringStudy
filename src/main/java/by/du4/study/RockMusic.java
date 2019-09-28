@@ -16,4 +16,6 @@ public class RockMusic implements  Music {
     public void doMyDestroy() {
         System.out.println("Doing my destruction.");
     }
+
+
 }
