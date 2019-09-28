@@ -10,31 +10,6 @@
 
     <context:property-placeholder location="classpath:musicPlayer.properties" />
 
-    <context:component-scan base-package="by.du4.study"/>
-
-    <!--<bean id="musicRock"-->
-          <!--class="by.du4.study.RockMusic"-->
-          <!--init-method="doMyInit"-->
-          <!--destroy-method="doMyDestroy"-->
-    <!--/>-->
-
-    <!--<bean id="musicClassic"-->
-          <!--class="by.du4.study.ClassicalMusic"-->
-          <!--factory-method="getClassicalMusic"-->
-    <!--/>-->
-
-    <!--<bean id="musicIdm" class="by.du4.study.IdmMusic">  </bean>-->
-
-    <!--<bean id="musicPlayer" class="by.du4.study.MusicPlayer" scope="prototype">-->
-        <!--<constructor-arg>-->
-            <!--<util:list>-->
-                <!--<ref bean="musicClassic" />-->
-                <!--<ref bean="musicIdm" />-->
-                <!--<ref bean="musicRock" />-->
-            <!--</util:list>-->
-        <!--</constructor-arg>-->
-        <!--<property name="name" value="${musicPlayer.name}" />-->
-        <!--<property name="volume" value="${musicPlayer.volume}" />-->
-    <!--</bean>-->
+    <context:component-scan base-package="by.du4.study.beans"/>
 
 </beans>
